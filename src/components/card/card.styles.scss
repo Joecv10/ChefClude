@@ -1,0 +1,74 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.image-card {
+  width: 9.8125rem;
+  height: 12.5rem;
+  margin-left: 2rem;
+  margin-top: 2rem;
+  margin-right: 1rem;
+}
+
+.image-journal {
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.text-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.location {
+  width: 100%;
+  height: 20px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+
+  .icon-location {
+    margin-left: 1rem;
+  }
+
+  h5 {
+    margin-right: 1rem;
+    margin-left: 1rem;
+
+    font-weight: 500;
+    color: black;
+  }
+
+  a {
+    color: darkgrey;
+    font-size: 12px;
+    text-decoration: underline;
+  }
+}
+.upper-text {
+  h3 {
+    margin-top: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 35px;
+  }
+}
+
+.lower-text {
+  h6 {
+    margin-top: 0;
+    margin-left: 1rem;
+    margin-bottom: 10px;
+  }
+  p {
+    margin-top: 0;
+    margin-left: 1rem;
+  }
+}

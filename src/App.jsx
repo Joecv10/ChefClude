@@ -2,12 +2,14 @@ import ActionCard from "./components/action-card/action-card.component";
 import Form from "./components/form/form.component";
 import Header from "./components/header/header.component";
 import IngridientsList from "./components/ingridients-list/ingridients-list.component";
+import RecipeCard from "./components/recipe-card/recipe.component";
 import MainComponent from "./containers/main";
 import { ingredients, header } from "./data/dbMock";
 import { useState } from "react";
 
 function App() {
   const [currentIngredients, setCurrentIngredients] = useState(ingredients);
+  const [showRecipe, setShowRecipe] = useState(false);
   console.log(currentIngredients);
 
   const addIngredient = (newIngredientName) => {
@@ -21,6 +23,10 @@ function App() {
       newIngredient,
     ]);
   };
+
+  const handleShowRecipe = () => {
+    setShowRecipe((prevValue) => !prevValue);
+  };
   return (
     <>
       <Header header={header} />
@@ -31,7 +37,10 @@ function App() {
         ) : (
           <></>
         )}
-        {currentIngredients.length > 3 && <ActionCard />}
+        {currentIngredients.length > 3 && (
+          <ActionCard handleShowRecipe={handleShowRecipe} />
+        )}
+        {showRecipe ? <RecipeCard /> : <></>}
       </MainComponent>
     </>
   );

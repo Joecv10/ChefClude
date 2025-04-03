@@ -3,9 +3,10 @@ import "./ingridients-list.styles.scss";
 
 const IngridientsList = (props) => {
   const { ingredients } = props;
+  console.log("IngridientsList", ingredients);
   return (
     <>
-      <article>
+      <article className="ingredients-list-container">
         <h1>Ingridients on Hand:</h1>
         <ul>
           {ingredients.map((ingredient) => (

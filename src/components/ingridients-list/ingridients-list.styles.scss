@@ -1,0 +1,14 @@
+.ingredients-list-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+
+  h1 {
+    width: 43%;
+  }
+
+  li {
+    margin-bottom: 5px;
+  }
+}

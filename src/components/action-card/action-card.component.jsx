@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 import "./action-card.styles.scss";
 
-const ActionCard = () => {
+const ActionCard = (props) => {
+  const { handleShowRecipe } = props;
   return (
     <>
       <div className="bigger-container-action-card">
@@ -10,7 +12,7 @@ const ActionCard = () => {
             <p>Generate a recipe from your list of ingredients.</p>
           </div>
           <div className="button-container-action-card">
-            <button>Get a recipe</button>
+            <button onClick={handleShowRecipe}>Get a recipe</button>
           </div>
         </div>
       </div>

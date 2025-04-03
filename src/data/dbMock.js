@@ -40,13 +40,7 @@ export const entries = [
   },
 ];
 
-export const ingredients = [
-  { id: 1, name: "tomato" },
-  { id: 2, name: "onion" },
-  { id: 3, name: "garlic" },
-  { id: 4, name: "beef" },
-  { id: 5, name: "pasta" },
-];
+export const ingredients = [];
 
 export const header = {
   title: "Chef Claude",

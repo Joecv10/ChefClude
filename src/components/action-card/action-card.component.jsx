@@ -2,7 +2,7 @@
 import "./action-card.styles.scss";
 
 const ActionCard = (props) => {
-  const { handleShowRecipe } = props;
+  const { handleShowRecipe, isLoading } = props;
   return (
     <>
       <div className="bigger-container-action-card">
@@ -12,7 +12,9 @@ const ActionCard = (props) => {
             <p>Generate a recipe from your list of ingredients.</p>
           </div>
           <div className="button-container-action-card">
-            <button onClick={handleShowRecipe}>Get a recipe</button>
+            <button onClick={handleShowRecipe}>
+              {!isLoading ? "Get a recipe" : "Generating your recipe…"}
+            </button>
           </div>
         </div>
       </div>

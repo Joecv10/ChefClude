@@ -6,11 +6,15 @@ import RecipeCard from "./components/recipe-card/recipe.component";
 import MainComponent from "./containers/main";
 import { ingredients, header } from "./data/dbMock";
 import { useState } from "react";
+import { getRecipe } from "./utils/ai";
 
 function App() {
   const [currentIngredients, setCurrentIngredients] = useState(ingredients);
-  const [showRecipe, setShowRecipe] = useState(false);
-  console.log(currentIngredients);
+  const [recipe, setRecipe] = useState({
+    recipeData: null,
+    isLoading: false,
+    isRecipeShown: false,
+  });
 
   const addIngredient = (newIngredientName) => {
     const newId =
@@ -24,9 +28,31 @@ function App() {
     ]);
   };
 
-  const handleShowRecipe = () => {
-    setShowRecipe((prevValue) => !prevValue);
+  const handleShowRecipe = async () => {
+    //Setting the loading state to true
+    setRecipe((prevRecipeState) => ({ ...prevRecipeState, isLoading: true }));
+    // Call get recipe
+    let recipeRecived = "";
+    try {
+      recipeRecived = await getRecipe(
+        currentIngredients,
+        "http://localhost:5001/ai-request"
+      );
+    } catch (error) {
+      console.log(error);
+      throw new Error("Failed to fetch recipe");
+    }
+    // Check validity of the data retrieved.
+    if (recipeRecived) {
+      setRecipe((prevState) => ({
+        ...prevState,
+        recipeData: recipeRecived,
+        isLoading: false,
+        isRecipeShown: true,
+      }));
+    }
   };
+
   return (
     <>
       <Header header={header} />
@@ -38,9 +64,16 @@ function App() {
           <></>
         )}
         {currentIngredients.length > 3 && (
-          <ActionCard handleShowRecipe={handleShowRecipe} />
+          <ActionCard
+            handleShowRecipe={handleShowRecipe}
+            isLoading={recipe.isLoading}
+          />
         )}
-        {showRecipe ? <RecipeCard /> : <></>}
+        {recipe.isRecipeShown ? (
+          <RecipeCard recipe={recipe.recipeData} />
+        ) : (
+          <></>
+        )}
       </MainComponent>
     </>
   );

@@ -3,7 +3,7 @@ import "./ingridients-list.styles.scss";
 
 const IngridientsList = (props) => {
   const { ingredients } = props;
-  console.log("IngridientsList", ingredients);
+
   return (
     <>
       <article className="ingredients-list-container">

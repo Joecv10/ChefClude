@@ -5,7 +5,7 @@ import IngridientsList from "./components/ingridients-list/ingridients-list.comp
 import RecipeCard from "./components/recipe-card/recipe.component";
 import MainComponent from "./containers/main";
 import { ingredients, header } from "./data/dbMock";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getRecipe } from "./utils/ai";
 
 function App() {
@@ -15,6 +15,13 @@ function App() {
     isLoading: false,
     isRecipeShown: false,
   });
+  const recipeSection = useRef(null);
+
+  useEffect(() => {
+    recipeSection.current !== null && recipe.recipeData
+      ? recipeSection.current.scrollIntoView({ behavior: "smooth" })
+      : null;
+  }, [recipe.recipeData, recipeSection]);
 
   const addIngredient = (newIngredientName) => {
     const newId =
@@ -65,6 +72,7 @@ function App() {
         )}
         {currentIngredients.length > 3 && (
           <ActionCard
+            ref={recipeSection}
             handleShowRecipe={handleShowRecipe}
             isLoading={recipe.isLoading}
           />

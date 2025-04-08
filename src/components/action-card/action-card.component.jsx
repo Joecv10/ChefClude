@@ -2,10 +2,10 @@
 import "./action-card.styles.scss";
 
 const ActionCard = (props) => {
-  const { handleShowRecipe, isLoading } = props;
+  const { handleShowRecipe, isLoading, ref } = props;
   return (
     <>
-      <div className="bigger-container-action-card">
+      <div ref={ref} className="bigger-container-action-card">
         <div className="container-action-card">
           <div className="text-container-action-card">
             <h3>Ready for a recipe?</h3>
